@@ -1,0 +1,590 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-vault-border-subtle;
+  }
+
+  body {
+    @apply bg-vault-bg-primary text-white antialiased;
+    background-image:
+      radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.08) 0, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.06) 0, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.05) 0, transparent 50%);
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+@layer components {
+  /* Glass Effects - Frosted surfaces with depth */
+  .glass {
+    @apply backdrop-blur-md border border-vault-border-subtle shadow-glass; background-color: rgba(255,255,255,0.05);
+  }
+
+  .glass-dark {
+    @apply backdrop-blur-lg border border-vault-border-subtle shadow-glass; background-color: rgba(0,0,0,0.20);
+  }
+
+  .glass-strong {
+    @apply backdrop-blur-xl border border-vault-border-medium shadow-glass-lg; background-color: rgba(255,255,255,0.08);
+  }
+
+  /* Solid surfaces for content areas */
+  .surface {
+    @apply bg-vault-bg-secondary border border-vault-border-subtle;
+  }
+
+  .surface-elevated {
+    @apply bg-vault-bg-tertiary border border-vault-border-medium shadow-lg;
+  }
+
+  /* Buttons - Premium interactions */
+  .btn-primary {
+    @apply px-5 py-2.5 bg-vault-accent-blue hover:bg-vault-accent-blue-dark
+           text-white font-medium rounded-xl
+           transition-all duration-200
+           hover:shadow-glow-blue hover:scale-[1.02]
+           active:scale-[0.98]
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+  }
+
+  .btn-secondary {
+    @apply px-5 py-2.5 bg-white/[0.05] hover:bg-white/10
+           text-white font-medium rounded-xl border border-vault-border-medium
+           transition-all duration-200
+           hover:border-vault-border-strong
+           active:scale-[0.98]
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply px-4 py-2 text-gray-300 hover:text-white hover:bg-white/[0.05]
+           rounded-lg transition-all duration-200;
+  }
+
+  .btn-danger {
+    @apply px-5 py-2.5 bg-red-500/10 hover:bg-red-500/20
+           text-red-400 font-medium rounded-xl border border-red-500/30
+           transition-all duration-200
+           hover:border-red-500/50
+           active:scale-[0.98];
+  }
+
+  /* Input Fields - Focus on clarity */
+  .input-field {
+    @apply w-full px-4 py-2.5
+           bg-white/[0.03] border border-vault-border-subtle rounded-xl
+           text-white placeholder-gray-500
+           focus:outline-none focus:ring-2 focus:ring-vault-accent-blue/50 focus:border-vault-accent-blue
+           transition-all duration-200;
+  }
+
+  .input-search {
+    @apply w-full px-4 py-3 pl-11
+           bg-white/[0.05] border border-vault-border-medium rounded-xl
+           text-white placeholder-gray-400
+           focus:outline-none focus:ring-2 focus:ring-vault-accent-blue/50 focus:border-vault-accent-blue
+           focus:bg-white/[0.08]
+           transition-all duration-200;
+  }
+
+  /* Cards - Layered visual hierarchy */
+  .card {
+    @apply glass-dark p-6 rounded-2xl transition-all duration-200;
+  }
+
+  .card-hover {
+    @apply card hover:border-vault-border-medium hover:shadow-glass-lg hover:-translate-y-0.5;
+  }
+
+  .card-interactive {
+    @apply card-hover cursor-pointer active:scale-[0.98];
+  }
+
+  .card-solid {
+    @apply surface p-6 rounded-2xl;
+  }
+
+  /* File Cards */
+  .file-card {
+    @apply card-interactive;
+  }
+
+  .file-card-icon {
+    @apply w-12 h-12 rounded-xl flex items-center justify-center mb-3
+           bg-gradient-to-br transition-all duration-200;
+  }
+
+  /* Stat Cards */
+  .stat-card {
+    @apply card hover:border-vault-border-medium;
+  }
+
+  .stat-card-icon {
+    @apply w-12 h-12 rounded-xl flex items-center justify-center mb-4
+           transition-all duration-200 group-hover:scale-110;
+  }
+
+  /* Navigation Items */
+  .nav-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl
+           text-gray-300 transition-all duration-200
+           hover:bg-white/[0.05] hover:text-white;
+  }
+
+  .nav-item-active {
+    @apply nav-item bg-vault-accent-blue text-white shadow-glow-blue;
+  }
+
+  /* Badges & Tags */
+  .badge {
+    @apply px-3 py-1 rounded-full text-xs font-medium border;
+  }
+
+  .badge-primary {
+    @apply badge bg-vault-accent-blue/10 text-vault-accent-blue border-vault-accent-blue/30;
+  }
+
+  .badge-secondary {
+    @apply badge bg-white/[0.05] text-gray-300 border-vault-border-medium;
+  }
+
+  .tag {
+    @apply px-2.5 py-1 rounded-lg text-xs font-medium
+           bg-white/[0.05] text-gray-300 border border-vault-border-subtle
+           hover:bg-white/10 hover:border-vault-border-medium
+           transition-all duration-200 cursor-pointer;
+  }
+
+  /* Loading States */
+  .skeleton {
+    @apply animate-pulse bg-white/[0.05] rounded-xl;
+  }
+
+  .skeleton-text {
+    @apply skeleton h-4 w-full;
+  }
+
+  /* Empty States */
+  .empty-state {
+    @apply flex flex-col items-center justify-center py-16 px-6 text-center;
+  }
+
+  .empty-state-icon {
+    @apply w-16 h-16 rounded-2xl bg-white/[0.05] flex items-center justify-center mb-4 text-gray-500;
+  }
+
+  /* Modal Overlay */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black/60 backdrop-blur-sm z-50
+           flex items-center justify-center p-4
+           animate-fade-in;
+  }
+
+  .modal-content {
+    @apply glass-strong rounded-3xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto
+           animate-scale-in;
+  }
+
+  /* Toast Notifications */
+  .toast {
+    @apply glass-strong px-4 py-3 rounded-xl border border-vault-border-medium
+           shadow-glass-lg animate-slide-in-right;
+  }
+
+  .toast-success {
+    @apply toast border-emerald-500/30 bg-emerald-500/10;
+  }
+
+  .toast-error {
+    @apply toast border-red-500/30 bg-red-500/10;
+  }
+
+  .toast-info {
+    @apply toast border-vault-accent-blue/30 bg-vault-accent-blue/10;
+  }
+
+  /* Dividers */
+  .divider {
+    @apply border-t border-vault-border-subtle my-6;
+  }
+
+  /* Grid Layouts */
+  .grid-files {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4;
+  }
+
+  .grid-dashboard {
+    @apply grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4;
+  }
+}
+
+@layer utilities {
+  /* Text Gradients */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-vault-accent-blue to-vault-accent-purple;
+  }
+
+  /* Shimmer Effect */
+  .shimmer {
+    @apply animate-shimmer;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.08) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+  }
+
+  /* Truncate with ellipsis */
+  .truncate-2-lines {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .truncate-3-lines {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Custom Scrollbar - Subtle and premium */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-white/20;
+}
+
+/* Selection */
+::selection {
+  @apply bg-vault-accent-blue/30 text-white;
+}
+
+/* Focus Visible - Accessibility */
+:focus-visible {
+  @apply outline-none ring-2 ring-vault-accent-blue/50 ring-offset-2 ring-offset-vault-bg-primary;
+}
+
+/* ========================================
+   MOBILE & TABLET RESPONSIVE UTILITIES
+   ======================================== */
+
+/* Touch targets - minimum 44x44px for accessibility */
+.touch-target {
+  @apply min-h-[44px] min-w-[44px];
+}
+
+.touch-target-sm {
+  @apply min-h-[40px] min-w-[40px];
+}
+
+/* Safe area insets for notched devices */
+.safe-area-inset-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-inset-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-area-inset-left {
+  padding-left: env(safe-area-inset-left);
+}
+
+.safe-area-inset-right {
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Prevent horizontal scroll on mobile */
+.mobile-safe {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Mobile-first container */
+.container-mobile {
+  @apply px-4 sm:px-6 lg:px-8;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive text sizes */
+.text-responsive-xs { @apply text-xs sm:text-sm; }
+.text-responsive-sm { @apply text-sm sm:text-base; }
+.text-responsive-base { @apply text-base sm:text-lg; }
+.text-responsive-lg { @apply text-lg sm:text-xl; }
+.text-responsive-xl { @apply text-xl sm:text-2xl; }
+.text-responsive-2xl { @apply text-2xl sm:text-3xl; }
+.text-responsive-3xl { @apply text-3xl sm:text-4xl lg:text-5xl; }
+
+/* Responsive spacing */
+.space-y-responsive { @apply space-y-4 sm:space-y-6; }
+.space-x-responsive { @apply space-x-3 sm:space-x-4; }
+.gap-responsive { @apply gap-3 sm:gap-4 lg:gap-6; }
+.p-responsive { @apply p-4 sm:p-6 lg:p-8; }
+.px-responsive { @apply px-4 sm:px-6; }
+.py-responsive { @apply py-4 sm:py-6; }
+
+/* Fix horizontal overflow - ensure all elements stay within viewport */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Ensure images and media never cause overflow */
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive tables */
+.table-responsive {
+  @apply w-full overflow-x-auto;
+}
+
+.table-responsive table {
+  @apply min-w-full;
+}
+
+/* Responsive code blocks */
+.code-block-responsive {
+  @apply overflow-x-auto p-4 rounded-xl bg-white/[0.03] border border-vault-border-subtle;
+}
+
+.code-block-responsive code {
+  @apply text-sm whitespace-pre;
+}
+
+/* Form elements responsive */
+.input-responsive {
+  @apply w-full px-4 py-3 text-base sm:text-sm;
+  /* Prevent zoom on iOS */
+  font-size: 16px;
+}
+
+.select-responsive {
+  @apply w-full px-4 py-3 text-base sm:text-sm;
+  font-size: 16px;
+}
+
+.button-responsive {
+  @apply px-4 py-3 text-sm sm:px-6 sm:py-3;
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+/* Card responsive */
+.card-responsive {
+  @apply p-4 sm:p-6;
+}
+
+/* Grid responsive fixes */
+.grid-responsive {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4;
+  width: 100%;
+}
+
+/* Fix grid-cols utilities to prevent overflow */
+.grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+/* Ensure flex containers don't overflow */
+.flex, .inline-flex {
+  min-width: 0;
+}
+
+/* Fix text truncation */
+.truncate, .truncate-2-lines, .truncate-3-lines {
+  min-width: 0;
+}
+
+/* Additional mobile text overflow fixes */
+.flex-1, .flex-auto, .flex-initial, .flex-none {
+  min-width: 0;
+}
+
+/* Ensure grid items don't overflow */
+.grid > * {
+  min-width: 0;
+}
+
+/* Prevent text from overflowing containers */
+.text-overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Fix for buttons and interactive elements to prevent text overflow */
+button, a, [role="button"] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Ensure inputs don't cause overflow */
+input, textarea, select {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Fix for long text in flex children */
+.flex > * {
+  min-width: 0;
+}
+
+/* Prevent horizontal scroll from long words */
+.word-break-anywhere {
+  overflow-wrap: anywhere;
+}
+
+.word-break-normal {
+  overflow-wrap: normal;
+}
+
+/* Mobile-first grid */
+.grid-responsive-1 { @apply grid grid-cols-1; }
+.grid-responsive-2 { @apply grid grid-cols-1 sm:grid-cols-2; }
+.grid-responsive-3 { @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3; }
+.grid-responsive-4 { @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4; }
+.grid-responsive-auto { @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5; }
+
+/* Mobile sidebar overlay */
+.mobile-sidebar-overlay {
+  @apply fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden animate-fade-in;
+}
+
+/* Mobile bottom navigation */
+.mobile-bottom-nav {
+  @apply fixed bottom-0 left-0 right-0 lg:hidden glass-strong border-t border-vault-border-medium z-50 safe-area-inset-bottom;
+}
+
+/* Mobile sheet/drawer */
+.mobile-sheet {
+  @apply fixed bottom-0 left-0 right-0 lg:hidden glass-strong rounded-t-3xl border-t border-vault-border-medium z-50 animate-slide-up max-h-[85vh] overflow-y-auto safe-area-inset-bottom;
+}
+
+.mobile-sheet-handle {
+  @apply w-10 h-1.5 bg-white/20 rounded-full mx-auto mt-3 mb-4;
+}
+
+/* Touch-friendly interactions */
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+.touch-none {
+  touch-action: none;
+}
+
+/* Prevent text selection on interactive elements */
+.no-select {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Better tap highlighting on mobile */
+.tap-highlight-transparent {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Responsive card padding */
+.card-padding-mobile { @apply p-4 sm:p-6; }
+.card-padding-tablet { @apply p-5 lg:p-6; }
+
+/* Responsive button sizes */
+.btn-mobile { @apply px-4 py-3 text-sm sm:px-5 sm:py-2.5 sm:text-base; }
+.btn-mobile-lg { @apply px-5 py-3.5 text-base sm:px-6 sm:py-3; }
+
+/* Text overflow fixes for mobile */
+.text-truncate { @apply truncate min-w-0; }
+.text-truncate-2 { @apply truncate-2-lines min-w-0; }
+.text-truncate-3 { @apply truncate-3-lines min-w-0; }
+
+/* Ensure content doesn't overflow on mobile */
+.mobile-safe-content {
+  max-width: 100%;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Mobile-first flex */
+.flex-col-mobile { @apply flex flex-col sm:flex-row; }
+.flex-wrap-mobile { @apply flex flex-wrap gap-3; }
+
+/* Hide on mobile / show on mobile */
+.hide-mobile { @apply hidden sm:block; }
+.show-mobile { @apply block sm:hidden; }
+.hide-tablet { @apply hidden lg:block; }
+.show-tablet { @apply block lg:hidden; }
+
+/* Mobile-optimized scroll */
+.scroll-touch {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Landscape phone adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+  .landscape-compact { @apply py-2; }
+  .landscape-compact .mobile-sheet { @apply max-h-[90vh]; }
+}
+
+/* Tablet portrait */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .tablet-portrait\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .tablet-portrait\:p-6 { padding: 1.5rem; }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .retina-border { border-width: 0.5px; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+}
+
+
