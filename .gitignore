@@ -44,3 +44,5 @@ next-env.d.ts
 Thumbs.db
 
 .vercel
+# Claude Code local settings
+.claude/
